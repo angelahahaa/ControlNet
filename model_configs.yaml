@@ -1,0 +1,101 @@
+base:
+  args:
+  - seed
+  - strength
+  - scale
+  - input_image
+  - a_prompt
+  - prompt
+  - image_resolution
+  - eta
+  - n_prompt
+  - num_samples
+  - ddim_steps
+  - guess_mode
+  ckpt_path: ''
+  config_path: ''
+  detector: ''
+  postprocess: postprocess.postprocess_base
+  preprocess: preprocess.preprocess_base
+canny:
+  args:
+  - high_threshold
+  - low_threshold
+  ckpt_path: ./models/control_sd15_canny.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.canny.CannyDetector
+  postprocess: postprocess.postprocess_canny
+  preprocess: preprocess.preprocess_canny
+depth:
+  args:
+  - detect_resolution
+  ckpt_path: ./models/control_sd15_depth.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.midas.MidasDetector
+  postprocess: postprocess.postprocess_depth
+  preprocess: preprocess.preprocess_depth
+fake_scribble:
+  args:
+  - detect_resolution
+  ckpt_path: ./models/control_sd15_scribble.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: ''
+  postprocess: postprocess.postprocess_fake_scribble
+  preprocess: preprocess.preprocess_fake_scribble
+hed:
+  args:
+  - detect_resolution
+  ckpt_path: ./models/control_sd15_hed.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.hed.HEDdetector
+  postprocess: postprocess.postprocess_hed
+  preprocess: preprocess.preprocess_hed
+hough:
+  args:
+  - value_threshold
+  - detect_resolution
+  - distance_threshold
+  ckpt_path: ./models/control_sd15_mlsd.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.mlsd.MLSDdetector
+  postprocess: postprocess.postprocess_hough
+  preprocess: preprocess.preprocess_hough
+normal:
+  args:
+  - bg_threshold
+  - detect_resolution
+  ckpt_path: ./models/control_sd15_normal.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.midas.MidasDetector
+  postprocess: postprocess.postprocess_normal
+  preprocess: preprocess.preprocess_normal
+pose:
+  args:
+  - detect_resolution
+  ckpt_path: ./models/control_sd15_openpose.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.openpose.OpenposeDetector
+  postprocess: postprocess.postprocess_pose
+  preprocess: preprocess.preprocess_pose
+scribble:
+  args: []
+  ckpt_path: ./models/control_sd15_scribble.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: ''
+  postprocess: postprocess.postprocess_scribble
+  preprocess: preprocess.preprocess_scribble
+scribble_interactive:
+  args: []
+  ckpt_path: ./models/control_sd15_scribble.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: ''
+  postprocess: postprocess.postprocess_scribble
+  preprocess: preprocess.preprocess_scribble_interactive
+seg:
+  args:
+  - detect_resolution
+  ckpt_path: ./models/control_sd15_seg.pth
+  config_path: ./models/cldm_v15.yaml
+  detector: annotator.uniformer.UniformerDetector
+  postprocess: postprocess.postprocess_seg
+  preprocess: preprocess.preprocess_seg
