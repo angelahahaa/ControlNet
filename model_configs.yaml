@@ -1,4 +1,5 @@
 base:
+  enabled: False
   args:
   - seed
   - strength
@@ -15,9 +16,10 @@ base:
   ckpt_path: ''
   config_path: ''
   detector: ''
-  postprocess: postprocess.postprocess_base
-  preprocess: preprocess.preprocess_base
+  postprocess: ''
+  preprocess: ''
 canny:
+  enabled: True
   args:
   - high_threshold
   - low_threshold
@@ -27,6 +29,7 @@ canny:
   postprocess: postprocess.postprocess_canny
   preprocess: preprocess.preprocess_canny
 depth:
+  enabled: True
   args:
   - detect_resolution
   ckpt_path: ./models/control_sd15_depth.pth
@@ -35,14 +38,16 @@ depth:
   postprocess: postprocess.postprocess_depth
   preprocess: preprocess.preprocess_depth
 fake_scribble:
+  enabled: True
   args:
   - detect_resolution
   ckpt_path: ./models/control_sd15_scribble.pth
   config_path: ./models/cldm_v15.yaml
-  detector: ''
+  detector: annotator.hed.HEDdetector
   postprocess: postprocess.postprocess_fake_scribble
   preprocess: preprocess.preprocess_fake_scribble
 hed:
+  enabled: True
   args:
   - detect_resolution
   ckpt_path: ./models/control_sd15_hed.pth
@@ -51,6 +56,7 @@ hed:
   postprocess: postprocess.postprocess_hed
   preprocess: preprocess.preprocess_hed
 hough:
+  enabled: True
   args:
   - value_threshold
   - detect_resolution
@@ -61,6 +67,7 @@ hough:
   postprocess: postprocess.postprocess_hough
   preprocess: preprocess.preprocess_hough
 normal:
+  enabled: True
   args:
   - bg_threshold
   - detect_resolution
@@ -70,6 +77,7 @@ normal:
   postprocess: postprocess.postprocess_normal
   preprocess: preprocess.preprocess_normal
 pose:
+  enabled: True
   args:
   - detect_resolution
   ckpt_path: ./models/control_sd15_openpose.pth
@@ -78,6 +86,7 @@ pose:
   postprocess: postprocess.postprocess_pose
   preprocess: preprocess.preprocess_pose
 scribble:
+  enabled: True
   args: []
   ckpt_path: ./models/control_sd15_scribble.pth
   config_path: ./models/cldm_v15.yaml
@@ -85,6 +94,7 @@ scribble:
   postprocess: postprocess.postprocess_scribble
   preprocess: preprocess.preprocess_scribble
 scribble_interactive:
+  enabled: False
   args: []
   ckpt_path: ./models/control_sd15_scribble.pth
   config_path: ./models/cldm_v15.yaml
@@ -92,6 +102,7 @@ scribble_interactive:
   postprocess: postprocess.postprocess_scribble
   preprocess: preprocess.preprocess_scribble_interactive
 seg:
+  enabled: True
   args:
   - detect_resolution
   ckpt_path: ./models/control_sd15_seg.pth

@@ -15,6 +15,7 @@ def postprocess_fake_scribble(detected_map, results):
     return [255 - detected_map] + results
 
 def postprocess_normal(detected_map, results):
+    detected_map = detected_map[:, :, ::-1]
     return [detected_map] + results
 
 def postprocess_hough(detected_map, results):

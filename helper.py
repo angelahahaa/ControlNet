@@ -164,3 +164,19 @@ def test_statedict_load():
     ddim_sampler = DDIMSampler(model)
     aa.end(message='get ddim sampler')
 # test_statedict_load()
+
+def log_stats(msg=None, device='cuda:0'):
+    # Log memory statistics
+    stats = torch.cuda.memory_stats(device)
+
+    allocated_memory = stats.get('allocated_bytes.all.current', 0)
+    reserved_memory = stats.get('reserved_bytes.all.current', 0)
+    total_memory = torch.cuda.get_device_properties(device).total_memory
+
+    allocated_gb = allocated_memory / (1024 * 1024 * 1024)
+    reserved_gb = reserved_memory / (1024 * 1024 * 1024)
+    total_gb = total_memory / (1024 * 1024 * 1024)
+
+    if msg:
+        logger.info(msg)
+    logger.info(f'     allocated {allocated_gb/total_gb*100:.2f}%, reserved {reserved_gb/total_gb*100:.2f}%')
