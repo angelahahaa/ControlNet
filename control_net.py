@@ -1,4 +1,5 @@
 
+from cldm.model import create_model
 from share import *
 import config
 
@@ -17,6 +18,9 @@ import importlib
 import logging
 
 logger = logging.getLogger()
+
+def get_model(device):
+    return create_model('./models/cldm_v15.yaml').to(device)
 
 with open('./model_configs.yaml', 'r') as f:
     model_configs = yaml.safe_load(f)
