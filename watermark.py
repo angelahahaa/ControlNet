@@ -50,5 +50,3 @@ def add_text_watermark_on_img(img, text, rot_angle,
     watermark_img.paste(rotated_text_img, (x, y))
     combined_image = Image.alpha_composite(img, watermark_img)
     return combined_image
-for w,h in [(1024,1024),(512,512),(128,128),(512,128),(128,512)]:
-    add_ai_generated_watermark(Image.open("cat.jpg").resize((w,h))).save(f'cat_{w}_{h}.png')
