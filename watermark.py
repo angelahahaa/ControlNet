@@ -2,8 +2,15 @@
 from PIL import Image, ImageDraw, ImageFont
 import platform
 import numpy as np
+import math
+
+def add_ai_generated_watermark(img):
+    w, h = img.size
+    fontsize = max(h,w)/10 # arbitrary, big enough to cover most of the image and small enough to not go beyond
+    rot = math.degrees(math.atan(h/w)) # left bottom to top right
+    return add_text_watermark_on_img(img, 'AI Generated', rot, fontsize)
+
 def add_text_watermark_on_img(img, text, rot_angle,
-                              font='arial.ttf',
                               fontsize=55,
                               ):
     if isinstance(img, np.ndarray):
@@ -20,10 +27,10 @@ def add_text_watermark_on_img(img, text, rot_angle,
     # font = ImageFont.load_default()
 
     # calculate text size in pixels (width, height)
-    text_size = font.getsize(text) 
+    _,_,w,h = font.getbbox(text) 
     # text_size = (300, 50)
     # create image for text
-    text_img = Image.new('RGBA', text_size, (255,255,255,0))
+    text_img = Image.new('RGBA', (w,h), (255,255,255,0))
     text_draw = ImageDraw.Draw(text_img)
 
     # draw text on image
@@ -43,3 +50,5 @@ def add_text_watermark_on_img(img, text, rot_angle,
     watermark_img.paste(rotated_text_img, (x, y))
     combined_image = Image.alpha_composite(img, watermark_img)
     return combined_image
+for w,h in [(1024,1024),(512,512),(128,128),(512,128),(128,512)]:
+    add_ai_generated_watermark(Image.open("cat.jpg").resize((w,h))).save(f'cat_{w}_{h}.png')

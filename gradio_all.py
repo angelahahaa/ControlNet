@@ -7,7 +7,7 @@ import numpy as np
 import torch
 
 from cldm.ddim_hacked import DDIMSampler
-from watermark import add_text_watermark_on_img
+from watermark import add_ai_generated_watermark
 from gr_theme import BrefingToolTheme
 
 
@@ -55,7 +55,7 @@ def on_run_btn_click(
     for i in range(len(outputs)):
         if i == 0:
             continue
-        outputs[i] = np.array(add_text_watermark_on_img(outputs[i], 'AI Generated', 45))
+        outputs[i] = np.array(add_ai_generated_watermark(outputs[i]))
     return outputs
 
 def create_canvas(w, h):
